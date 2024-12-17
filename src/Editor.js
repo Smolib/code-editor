@@ -4,36 +4,51 @@ import { Compartment } from "@codemirror/state";
 import { javascript } from "@codemirror/lang-javascript";
 import { python } from "@codemirror/lang-python";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useImperativeHandle } from "react";
 
-export let languageMap = new Map([
-  ['JavaScript', javascript],
-  ['Python', python],
+const languageMap = new Map([
+  ["JavaScript", javascript],
+  ["Python", python],
 ]);
-  
 
-function Editor({ selectedLanguage }) {
-  const languageSelect = useRef(new Compartment());
-  const editorItem = useRef();
-  const editorParentRef = useRef();
+export const languageNames = [...languageMap.keys()];
 
-  useEffect (() => {
-    if (!editorItem.current) {
-      editorItem.current = new EditorView({
-        doc: "hello",
-        extensions: [basicSetup, languageSelect.current.of(javascript())],
-        parent: editorParentRef.current,
-      });
-    }
-  }, [])
+function Editor({ selectedLanguage, editorImperativeHandleRef }) {
+  const languageSelectCompartmentRef = useRef(new Compartment());
+  const editorItemRef = useRef();
+  const editorDivParentRef = useRef();
+
+  useImperativeHandle(
+    editorImperativeHandleRef,
+    () => {
+      return {
+        getText: () => editorItemRef.current.state.doc.text,
+      };
+    },
+    [editorItemRef]
+  );
 
   useEffect(() => {
-      editorItem.current.dispatch({
-        effects: languageSelect.current.reconfigure(languageMap.get(selectedLanguage)()),
+    if (!editorItemRef.current) {
+      editorItemRef.current = new EditorView({
+        doc: "const",
+        extensions: [
+          basicSetup,
+          languageSelectCompartmentRef.current.of(
+            languageMap.get(selectedLanguage)()
+          ),
+        ],
+        parent: editorDivParentRef.current,
       });
+    }
+    editorItemRef.current.dispatch({
+      effects: languageSelectCompartmentRef.current.reconfigure(
+        languageMap.get(selectedLanguage)()
+      ),
+    });
   }, [selectedLanguage]);
 
-  return <div ref={editorParentRef}></div>;
+  return <div ref={editorDivParentRef}></div>;
 }
 
 export default Editor;

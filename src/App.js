@@ -1,21 +1,30 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import Editor from "./Editor";
-import { languageMap } from "./Editor";
+import { languageNames } from "./Editor";
 
 function App() {
-  const languages = [...languageMap.keys()];
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const [selectedLanguage, setSelectedLanguage] = useState(languageNames[0]);
+  const editorImperativeHandleRef = useRef();
+
+  const handleOnClickRunButton = useCallback((evt) => {
+    evt.preventDefault();
+    console.log(editorImperativeHandleRef.current.getText());
+  }, []);
+
   return (
     <div className="App">
       <main>
-        <Editor selectedLanguage={selectedLanguage}></Editor>
-        <button>ЖМИ</button>
+        <Editor
+          selectedLanguage={selectedLanguage}
+          editorImperativeHandleRef={editorImperativeHandleRef}
+        ></Editor>
+        <button onClick={handleOnClickRunButton}>RUN</button>
         <select
           value={selectedLanguage}
           onChange={(e) => setSelectedLanguage(e.target.value)}
         >
-          {languages.map((item) => {
+          {languageNames.map((item) => {
             return (
               <option key={item} value={item}>
                 {item}
