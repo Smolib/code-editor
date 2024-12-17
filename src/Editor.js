@@ -6,6 +6,7 @@ import { python } from "@codemirror/lang-python";
 
 import { useRef, useEffect, useImperativeHandle } from "react";
 
+// Map в том числе необходим для проверки, что Editor не получит язык, с которым не умеет обращаться
 const languageMap = new Map([
   ["JavaScript", javascript],
   ["Python", python],
