@@ -4,6 +4,8 @@ import { basicSetup } from "codemirror";
 import { Compartment } from "@codemirror/state";
 import { javascript } from "@codemirror/lang-javascript";
 import { python } from "@codemirror/lang-python";
+import { dracula } from '@uiw/codemirror-theme-dracula';
+
 
 import { useRef, useEffect, useImperativeHandle } from "react";
 
@@ -14,6 +16,12 @@ const languageMap = new Map([
 ]);
 
 export const languageNames = [...languageMap.keys()];
+
+
+const fixedHeightEditor = EditorView.theme({
+  "&": {height: "100%"},
+  ".cm-scroller": {overflow: "auto"}
+})
 
 function Editor({ selectedLanguage, ref }) {
   const languageSelectCompartmentRef = useRef(new Compartment());
@@ -39,6 +47,8 @@ console.log('Hello, world!')`,
         extensions: [
           basicSetup,
           EditorView.lineWrapping,
+          dracula,
+          fixedHeightEditor,
           languageSelectCompartmentRef.current.of(
             languageMap.get(selectedLanguage)()
           ),

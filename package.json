@@ -5,6 +5,7 @@
   "dependencies": {
     "@codemirror/lang-javascript": "github:codemirror/lang-javascript",
     "@codemirror/lang-python": "github:codemirror/lang-python",
+    "@uiw/codemirror-theme-dracula": "^4.23.7",
     "codemirror": "^6.0.1",
     "cra-template": "1.2.0",
     "react": "^19.0.0",

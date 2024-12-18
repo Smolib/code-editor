@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   height: 10%;
-  background-color: black;
 }
 
 .header__title {
@@ -40,13 +39,14 @@
 
 .main__button {
   cursor: pointer;
-  background-color: black;
   color: yellowgreen;
   font-weight: 700;
   font-size: clamp(1em, 2vw, 1.5em);
   border: none;
   outline: none;
   text-align: center;
+
+  background-color: inherit;
 }
 
 .main__button:disabled {
@@ -57,7 +57,6 @@
 .main__wrapper-task-text {
   height: 90%;
   max-height: 90%;
-  background-color: black;
   color:white;
   display: flex;
   flex-direction: column;
@@ -87,7 +86,6 @@
   max-height: 7%;
   margin: 0;
   text-align: center;
-  background-color: black;
 
   font-size: clamp(1em, 2vw, 1.2em);
 }
@@ -114,8 +112,6 @@
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
   word-break: break-all;
-  background-color: black;
-
   font-size: 1.5em;
   padding: 20px;
   box-sizing: border-box;

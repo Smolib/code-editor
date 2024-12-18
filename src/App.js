@@ -24,6 +24,8 @@ function App() {
       text: "Сервер старательно проверяет ваш код, подождем...",
     });
     setIsRunButtonClicked(true);
+
+    console.log(editorRef.current.getText());
     post({
       code: editorRef.current.getText(),
       language: selectedLanguage,
