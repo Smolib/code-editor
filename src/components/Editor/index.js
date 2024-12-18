@@ -43,9 +43,7 @@ function Editor({ ref, selectedLanguage }) {
   useEffect(() => {
     if (!editorItemRef.current) {
       editorItemRef.current = new EditorView({
-        doc: `Пишите свой великолепный код здесь! 
-Например, можете написать:
-console.log('Hello, world!')`,
+        doc: `Пишите свой великолепный код здесь!\nНапример, можете написать:\nconsole.log('Hello, world!')`,
         extensions: [
           basicSetup,
           EditorView.lineWrapping,

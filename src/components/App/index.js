@@ -104,14 +104,9 @@ function App() {
         >
           {codeCheckTheme.text}
         </p>
-        <code className="main__text-response-code">
-          <pre>
-            {textResponse.map((str) => {
-              return `${str}
-`;
-            })}
-          </pre>
-        </code>
+        <pre className="main__text-response-code">
+          <code>{textResponse.join("\n")}</code>
+        </pre>
       </main>
     </>
   );
