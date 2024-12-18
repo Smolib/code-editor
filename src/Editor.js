@@ -32,7 +32,9 @@ function Editor({ selectedLanguage, ref }) {
     ref,
     () => {
       return {
-        getText: () => editorItemRef.current.state.doc.text,
+        getText: () => {
+          return [...editorItemRef.current.state.doc.iterLines()]
+        }
       };
     },
     [editorItemRef]
