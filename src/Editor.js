@@ -1,3 +1,4 @@
+import "./Editor.css";
 import { EditorView } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { Compartment } from "@codemirror/state";
@@ -14,13 +15,13 @@ const languageMap = new Map([
 
 export const languageNames = [...languageMap.keys()];
 
-function Editor({ selectedLanguage, editorImperativeHandleRef }) {
+function Editor({ selectedLanguage, ref }) {
   const languageSelectCompartmentRef = useRef(new Compartment());
   const editorItemRef = useRef();
   const editorDivParentRef = useRef();
 
   useImperativeHandle(
-    editorImperativeHandleRef,
+    ref,
     () => {
       return {
         getText: () => editorItemRef.current.state.doc.text,
@@ -32,9 +33,12 @@ function Editor({ selectedLanguage, editorImperativeHandleRef }) {
   useEffect(() => {
     if (!editorItemRef.current) {
       editorItemRef.current = new EditorView({
-        doc: "const",
+        doc: `Пишите свой великолепный код здесь!
+Например, можете написать:
+console.log('Hello, world!')`,
         extensions: [
           basicSetup,
+          EditorView.lineWrapping,
           languageSelectCompartmentRef.current.of(
             languageMap.get(selectedLanguage)()
           ),
@@ -49,7 +53,7 @@ function Editor({ selectedLanguage, editorImperativeHandleRef }) {
     });
   }, [selectedLanguage]);
 
-  return <div ref={editorDivParentRef}></div>;
+  return <div className="editor" ref={editorDivParentRef}></div>;
 }
 
 export default Editor;

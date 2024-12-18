@@ -1,38 +1,122 @@
-.App {
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  background-color: black;
+}
+
+.header__title {
+  margin: 0;
+  color: white;
+  font-size: clamp(25px, 2.7vw, 40px);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 90%;
+}
+
+.main__wrapper {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 60%;
+  max-height: 60%;
+}
+
+.main__wrapper-task {
+  height: 100%;
+  max-height: 100%;
+}
+
+.main__wrapper-task-buttons {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 10%;
+  max-height: 10%;
+}
+
+.main__button {
+  cursor: pointer;
+  background-color: black;
+  color: yellowgreen;
+  font-weight: 700;
+  font-size: clamp(1em, 2vw, 1.5em);
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.main__button:disabled {
+  cursor:default;
+  color: gray;
+}
+
+.main__wrapper-task-text {
+  height: 90%;
+  max-height: 90%;
+  background-color: black;
+  color:white;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  gap:18px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.main__title-task {
+  margin: 0;
+
+  font-size: clamp(1em, 2vw, 1.2em);
+}
+
+.main__description-task {
+  margin: 0;
+
+  font-size: clamp(0.8em, 1.5vw, 1em);
+}
+
+.main__sucess-response {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 7%;
+  max-height: 7%;
+  margin: 0;
+  text-align: center;
+  background-color: black;
+
+  font-size: clamp(1em, 2vw, 1.2em);
+}
+
+.main__success-response_color_white {
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.main__success-response_color_red {
+  color: red;
+}
+.main__success-response_color_green {
+  color: greenyellow;
+}
+.main__success-response_color_yellow {
+  color: yellow;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main__text-response-code {
+  width: 100%;
+  height: 33%;
+  max-height: 33%;
+  overflow: hidden auto;
+  color: white;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  word-break: break-all;
+  background-color: black;
+
+  font-size: 1.5em;
+  padding: 20px;
+  box-sizing: border-box;
 }

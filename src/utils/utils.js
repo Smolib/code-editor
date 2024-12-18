@@ -14,7 +14,6 @@ export async function post(data) {
 
 async function postServerResponsMock(data) {
   data = JSON.parse(data);
-
   // имитация задержки ответа сервера
   await new Promise((res) => setTimeout(res, 2000));
 
@@ -24,12 +23,12 @@ async function postServerResponsMock(data) {
   if (isSuccess) {
     response = {
       status: serverResponses.success,
-      output: `Вы очень круты! Вот ваш великолепный код, который смог: ${data.code}`,
+      output: data.code,
     };
   } else {
     response = {
       status: serverResponses.error,
-      output: "Вы можете лучше! Старайтесь!",
+      error: "SyntaxError: Unexpected token"
     };
   }
   return JSON.stringify(response);
