@@ -1,6 +1,7 @@
 {
   "name": "code-editor",
   "version": "0.1.0",
+  "homepage": "https://smolib.github.io/code-editor/",
   "private": true,
   "dependencies": {
     "@codemirror/lang-javascript": "github:codemirror/lang-javascript",
