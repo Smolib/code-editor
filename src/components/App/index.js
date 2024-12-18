@@ -104,8 +104,8 @@ function App() {
         >
           {codeCheckTheme.text}
         </p>
-        <pre className="main__text-response-code">
-          <code>{textResponse.join("\n")}</code>
+        <pre className="main__text-response-pre">
+          <code className="main__text-response-code">{textResponse.join("\n")}</code>
         </pre>
       </main>
     </>
